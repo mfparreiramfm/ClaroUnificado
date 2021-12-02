@@ -7,3 +7,4 @@ gem 'site_prism'
 gem 'httparty'
 gem 'send-keys'
 gem "selenium-webdriver", "3.142.7"
+gem "ffi"
