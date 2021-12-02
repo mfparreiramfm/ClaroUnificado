@@ -1,6 +1,5 @@
 pipeline {
-     
-     agent  {
+    agent {
         docker {
             image 'ruby'
         }
@@ -11,7 +10,7 @@ pipeline {
             steps{
                 echo "Building or Resolve dependecies!"
                 // sh "rm -f Gemfile.lock"
-                sh 'bundle install'
+                //sh 'bundle install'
             }
         }
         stage("Test"){
