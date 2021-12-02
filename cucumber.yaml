@@ -1,0 +1,7 @@
+---
+  default: -p hmg  -p pretty --publish
+  dev: ENV_TYPE=dev 
+  hmg: ENV_TYPE=hmg
+  html: --format html --out=log/report.html
+  json: --format json --out=log/report.json
+  pretty: --format pretty 
