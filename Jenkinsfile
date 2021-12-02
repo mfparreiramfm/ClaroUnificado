@@ -1,10 +1,9 @@
 pipeline {
-     agent any 
-    //{
-    //     docker {
-    //         image 'ruby'
-    //     }
-    // }
+     agent  {
+        docker {
+            image 'ruby'
+        }
+    }
 
     stages{
         stage("Build"){
