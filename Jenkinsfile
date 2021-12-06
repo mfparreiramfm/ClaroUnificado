@@ -1,63 +1,34 @@
 pipeline {
-
     agent {
-
         docker {
-
             image 'ruby'
-
         }
-
     }
 
-    
-
-    stages {
-
-        stage('Buid') {
-
-            steps {
-
-                echo 'Bulding or Resolve Depedenies!'
-
+    stages{
+        stage("Build"){
+            steps{
+                echo "Building or Resolve dependecies!"
+                sh "rm -f Gemfile.lock"
                 sh 'bundle install'
-
             }
-
         }
-
-        stage ('Test') {
-
-            steps {
-
-                echo 'Executar testes em regressão'
-
+        stage("Test"){
+            steps{
+                echo "Testing!"
+                sh 'cucumber -p hmg -p pretty --publish'
+                cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
             }
-
         }
-
-        stage('UAT'){
-
-            steps {
-
-                echo 'Aguarde até aceitação do usuário'
-
-                input(message: 'Go to produção?', ok: 'Yes')
-
+        stage("UAT"){
+            steps{
+                echo "Building or Resolve dependecies!"
             }
-
         }
-
-        stage ('Prod') {
-
-            steps {
-
-                echo 'WebApp is :)'
-
+          stage("PROD"){
+            steps{
+                echo "Building or Resolve dependecies!"
+            }
         }
-
     }
-
-  }
-
 }
