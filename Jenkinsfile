@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'ruby/rubywd'
+            image 'papitoio/rubywd'
         }
     }
 
