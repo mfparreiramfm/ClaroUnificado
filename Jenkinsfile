@@ -28,7 +28,7 @@ pipeline {
 
         stage ('Test') {
 
-            steps {ar
+            steps {
 
                 echo 'Executar testes em regressão'
 
