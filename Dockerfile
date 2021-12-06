@@ -100,6 +100,9 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get update \
     && sudo apt-get install postgresql postgresql-contrib
 
+
+
+
 # start xvfb automatically to avoid needing to express
 ENV DISPLAY :99
 RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/entrypoint \
@@ -108,6 +111,7 @@ RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/en
 
 # ensure that the build agent doesn't override the entrypoint
 LABEL io.qaninja.preserve-entrypoint=true
+
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/sh"]
