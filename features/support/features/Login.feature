@@ -18,8 +18,8 @@ Para assim poder efetuar acordos
             Cenario: Usuário faz login
 
             Dado que a devedor acesse o sistema
-            E Complete o cpf "02755455390" 
-            E Preencha a data de nascimento "18-06-1990"
+            E Complete o cpf "01521433194" 
+            E Preencha a data de nascimento "18-05-1985"
             E clique em aceitar termos
             E clique em consulte
             Então vejo o menu principal        
