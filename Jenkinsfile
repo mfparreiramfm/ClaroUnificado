@@ -16,7 +16,7 @@ pipeline {
         stage("Test"){
             steps{
                 echo "Testing!"
-                sh 'cucumber -p hmg -p pretty --publish'
+                sh 'cucumber -p hmg -p pretty --publish -p json'
                 
             }
             post{
