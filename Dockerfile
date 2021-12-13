@@ -1,6 +1,10 @@
 FROM ruby:2.6.5-stretch
 
 
+
+
+
+
 # Install FreeTDS
 RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
 		tar -xzf freetds-0.95.80.tar.gz && \
@@ -8,6 +12,8 @@ RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
 		./configure --prefix=/usr/local --with-tdsver=7.3 && \
 		make && \
 		make install
+
+RUN  freetds --version
 
 
 RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90qaninja \
