@@ -1,5 +1,15 @@
 FROM ruby:2.6.5-stretch
 
+
+# Install FreeTDS
+RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
+		tar -xzf freetds-0.95.80.tar.gz && \
+		cd freetds-0.95.80 && \
+		./configure --prefix=/usr/local --with-tdsver=7.3 && \
+		make && \
+		make install
+
+
 RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90qaninja \
   && echo 'DPkg::Options "--force-confnew";' >> /etc/apt/apt.conf.d/90qaninja
 
@@ -102,13 +112,6 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
 
 
 
-# Install FreeTDS
-RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.1.24.tar.gz && \
-		tar -xzf freetds-1.1.24.tar.gz && \
-		cd freetds-1.1.24 && \
-		./configure --prefix=/usr/local --with-tdsver=7.3 && \
-		make && \
-		make install
 
 
 
