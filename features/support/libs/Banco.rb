@@ -10,7 +10,7 @@ class Banco
 
 
       # Select utilizado para capturar o CPF e o NOME do devedor na Base
-      select = "SELECT top 1 DEV_CPF , DEV_ID
+      select = "SELECT top 2 DEV_CPF , DEV_ID, DEV_DATA_NASC
       from tab_devedor(nolock)
       inner join tab_titulo(nolock) on dev_id = tit_devedor
       inner join tab_titulo_parcela(nolock) on tit_id = tpa_titulo
@@ -22,9 +22,10 @@ class Banco
         @resultado.each do |row|
           @cpfObtido = row['DEV_CPF']
           @DEV_ID = row['DEV_ID']
+          @dev_dataNasc = row['DEV_DATA_NASC'] 
   
         end
-        @devedor_obtido = [@cpfObtido, @DEV_ID]
+        @devedor_obtido = [@cpfObtido, @DEV_ID,@dev_dataNasc]
         
      end
 
@@ -46,9 +47,10 @@ class Banco
         @resultado.each do |row|
           @cpfObtidoNet = row['DEV_CPF']
           @DEV_ID_NET = row['DEV_ID']
-  
+          @dev_dataNasc = row['DEV_DATA_NASC'] 
+         
         end
-        @devedor_obtido_net = [@cpfObtidoNet, @DEV_ID_NET]
+        @devedor_obtido_net = [@cpfObtidoNet, @DEV_ID_NET, @dev_dataNasc]
   
      end
 

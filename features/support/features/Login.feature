@@ -12,17 +12,16 @@ Para assim poder efetuar acordos
             # Dado que um teste vai ser iniciado
             # Entao consulto no banco um devedor
 
-          
 
             @cpf_valido
             Cenario: Usuário faz login
 
             Dado que a devedor acesse o sistema
-            E Complete o cpf "01521433194" 
-            E Preencha a data de nascimento "18-05-1985"
+            E Preencha o cpf 
+            E Preencha a data de nascimento
             E clique em aceitar termos
             E clique em consulte
-            Então vejo o menu principal        
+            Então vejo o menu principal
 
 
             @cnpj_valido
@@ -40,7 +39,7 @@ Para assim poder efetuar acordos
 
             Dado que a devedor acesse o sistema
             E Preencha o cpf invalido "35967338802"
-            E Preencha a data de nascimento "08/01/1988"
+            E Preencha a data de nascimento
             E clique em aceitar termos
             E clique em consulte
             Então deve ver uma mensagem de erro informando "Dados de acesso inválidos."
@@ -50,8 +49,8 @@ Para assim poder efetuar acordos
             Cenario: Data nascimento errada
 
             Dado que a devedor acesse o sistema
-            E Complete o cpf "02755455390" 
-            E Preencha a data de nascimento "11/10/195"
+            E Preencha o cpf 
+            E Preencha a data de nascimento errada "11/10/195"
             E clique em aceitar termos
             E clique em consulte
             Então deve ver uma mensagem de erro informando "Por favor, preencha sua data de nascimento."

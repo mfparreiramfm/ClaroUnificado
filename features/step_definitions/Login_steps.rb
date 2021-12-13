@@ -3,19 +3,16 @@ Dado('que a devedor acesse o sistema') do
     @Login.go
 end
   
-Dado('Complete o cpf {string}') do |cpf_recebido|
-  @Login.PreencheCampoCpf(cpf_recebido)
+Dado('Preencha o cpf') do 
+   cpf = @Banco.consultarDevedorBDClaro[0]
+   @Login.preencheCampoCpf(cpf)
 end
-
-Dado('Preencha a data de nascimento {string}') do |data_nasc|
-  @Login.PreencheCampoDataNascimento(data_nasc)
-end
-
-
-
+  
 Dado('clique em consulte') do
-    @Login.ClicaBotaoEntrar
-    
+    @Login.clicaBotaoEntrar
+    # @premissa = @Httparty.getDividas
+    # @dados = @Httparty.getOpcoesPagamento
+    #log @dados
 end
   
 Então('vejo o menu principal') do
@@ -30,39 +27,40 @@ Então('vejo o menu principal') do
 end
 
 
+
+Dado('clique em aceitar termos') do
+    @Login.ClicaTermos
+  end
+
 Dado('clique na opção para incluir CNPJ') do
     @Login.clicarCNPJ
 end
   
 Dado('Preencha o CNPJ') do
-    @Login.PreencheCampoCNPJ
+    @Login.preencheCampoCNPJ
 end
 
 
 Dado('Preencha o cpf invalido {string}') do |cpf_inválido|
-  @Login.PreencheCampoCpfInvalido(cpf_inválido)
+  @Login.preencheCampoCpfInvalido(cpf_inválido)
     
 end
-
-
-
-Dado('Preencha o {string}') do |string|                                        
-    @Login.PreencheCampoCNPJ
-  end                                                                            
-                                                                                 
-                                                                           
   
-
+Dado('Preencha a data de nascimento') do
+    @dataNasc = @Banco.consultarDevedorBDClaro[2]
+    @dataNascConve = @dataNasc.to_s
+    @ano = @dataNascConve[0..3]
+    @mes = @dataNascConve[5..6]
+    @dia = @dataNascConve[8..9]
+    
+    @dataNascFinal = @dia + @mes + @ano
+    
+    @Login.preencheCampoDataNascimento(@dataNascFinal)
+  end
   
   Dado('Preencha a data de nascimento errada {string}') do |data_nasc_errada|
-    @Login.PreencheCampoDataNascimetoInvalido(data_nasc_errada)
+    @Login.preencheCampoDataNascimetoInvalido(data_nasc_errada)
   end
-
-  Dado('clique em aceitar termos') do
-    @Login.ClicaTermos
-  end
-
-
   
 Então('deve ver uma mensagem de erro informando {string}') do |msg|
     msg_error = find('.errorList').text
