@@ -19,7 +19,7 @@ RUN if grep -q Debian /etc/os-release && grep -q jessie /etc/os-release; then \
 
 # Make sure PATH includes ~/.local/bin
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839155
-# This only works for root. The qaninja user is done near the end of this Dockerfile
+# This only works for root. The qaninja user is done near the end of this Dockerfile PQ
 RUN echo 'PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/user-local-path.sh
 
 # man directory is missing in some base images
@@ -101,10 +101,17 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get install postgresql postgresql-contrib
 
 #Install tinyTDS
+ RUN sudo apt update
+ RUN sudo apt install build-essential
+ RUN sudo apt-get update
+ RUN sudo apt-get install libc6-dev
 
  RUN apt-get install wget
  RUN apt-get install build-essential
  RUN apt-get install libc6-dev
+ RUN sudo apt-get install manpages-dev
+ RUN gcc --version
+
 
 RUN  wget http://www.freetds.org/files/stable/freetds-1.1.24.tar.gz
    tar -xzf freetds-1.1.24.tar.gz
