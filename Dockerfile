@@ -107,8 +107,8 @@ RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
 		tar -xzf freetds-0.95.80.tar.gz && \
 		cd freetds-0.95.80 && \
 		./configure --prefix=/usr/local --with-tdsver=7.3 && \
-		make && \
-		make install
+    sudo make && \
+		sudo make install
 
 RUN freetds --version
 
