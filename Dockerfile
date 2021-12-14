@@ -100,21 +100,6 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get update \
     && sudo apt-get install postgresql postgresql-contrib
 
-#Install tinyTDS
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-RUN https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list | sudo tee /etc/apt/sources.list.d/mssql-server-2017.list
-
- RUN sudo apt-get update
- RUN sudo apt-get install mssql-server
-
-
-
-RUN  wget http://www.freetds.org/files/stable/freetds-1.1.24.tar.gz
-   tar -xzf freetds-1.1.24.tar.gz
-   cd freetds-1.1.24
-   ./configure --prefix=/usr/local --with-tdsver=7.3
-   make
-   make install
 
 
 # Install FreeTDS
