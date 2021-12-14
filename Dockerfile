@@ -100,6 +100,18 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get update \
     && sudo apt-get install postgresql postgresql-contrib
 
+#Install tinyTDS
+
+ RUN apt-get install wget
+ RUN apt-get install build-essential
+ RUN apt-get install libc6-dev
+
+RUN  wget http://www.freetds.org/files/stable/freetds-1.1.24.tar.gz
+   tar -xzf freetds-1.1.24.tar.gz
+   cd freetds-1.1.24
+   ./configure --prefix=/usr/local --with-tdsver=7.3
+   make
+   make install
 
 
 # Install FreeTDS
@@ -110,7 +122,7 @@ RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
 		make && \
 		make install
 
-RUN  freetds --version
+RUN freetds --version
 
 
 
