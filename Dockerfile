@@ -101,16 +101,12 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get install postgresql postgresql-contrib
 
 #Install tinyTDS
- RUN sudo apt update
- RUN sudo apt install build-essential
- RUN sudo apt-get update
- RUN sudo apt-get install libc6-dev
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+RUN https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list | sudo tee /etc/apt/sources.list.d/mssql-server-2017.list
 
- RUN apt-get install wget
- RUN apt-get install build-essential
- RUN apt-get install libc6-dev
- RUN sudo apt-get install manpages-dev
- RUN gcc --version
+ RUN sudo apt-get update
+ RUN sudo apt-get install mssql-server
+
 
 
 RUN  wget http://www.freetds.org/files/stable/freetds-1.1.24.tar.gz
