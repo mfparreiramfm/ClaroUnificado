@@ -1,6 +1,8 @@
 pipeline {
     agent {
-      { docker { image 'ruby:3.0.3-alpine' } }
+        docker {
+            image 'papitoio/rubywd'
+        }
     }
 
     stages{
