@@ -100,17 +100,18 @@ RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-k
     && sudo apt-get update \
     && sudo apt-get install postgresql postgresql-contrib
 
-
+RUN yum groupinstall "Development Tools"
+RUN apt-get install build-essential
 
 # Install FreeTDS
 RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-0.95.80.tar.gz && \
 		tar -xzf freetds-0.95.80.tar.gz && \
 		cd freetds-0.95.80 && \
-		./configure --prefix=/usr/local --with-tdsver=7.3 && \
+		./configure --prefix=/usr --with-tdsver=7.3 && \
     && sudo apt-get update \
     && sudo apt-get install freetds-0.95.80
 
-RUN freetds --version
+
 
 
 
