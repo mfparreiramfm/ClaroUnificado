@@ -1,5 +1,10 @@
 FROM ruby:2.6.5-stretch
 
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz
+
 RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90qaninja \
   && echo 'DPkg::Options "--force-confnew";' >> /etc/apt/apt.conf.d/90qaninja
 
